@@ -17,6 +17,7 @@ namespace Vidrent.Models
         public DateTime DateAdded { get; set; }
         [Display(Name = "Release date")]
         public DateTime ReleaseDate { get; set; }
+        [Range(1,20)]
         [Display (Name = "Number In Stock")]
         public byte NumberInStock { get; set; }
     }

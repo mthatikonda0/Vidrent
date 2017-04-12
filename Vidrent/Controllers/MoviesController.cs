@@ -40,7 +40,7 @@ namespace Vidrent.Controllers
 
         }
 
-        public ActionResult NewMovie()
+        public ViewResult NewMovie()
         {
             var genres = _context.Genres.ToList();
             var viewmodel = new NewMovieViewModel
@@ -56,9 +56,8 @@ namespace Vidrent.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new NewMovieViewModel
+            var viewModel = new NewMovieViewModel(movie)
             {
-                Movie = movie,
                 Genres = _context.Genres.ToList()
             };
 
@@ -86,8 +85,17 @@ namespace Vidrent.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new NewMovieViewModel(movie)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+                return View("NewMovie", viewModel);
+            }
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
