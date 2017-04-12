@@ -22,7 +22,7 @@ namespace Vidrent.Models
 
         [Display (Name = "Membership Type")]
         public byte MembershipId { get; set; }
-
+        [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
     
     }
