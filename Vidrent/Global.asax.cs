@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
-using Vidrent.App_Start;
 
 namespace Vidrent
 {
@@ -15,7 +14,7 @@ namespace Vidrent
     {
         protected void Application_Start()
         {
-            Mapper.Initialize( C => C.AddProfile<MappingProfile>());
+            Mapper.Initialize( c => c.AddProfile<MappingProfile>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
