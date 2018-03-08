@@ -5,22 +5,23 @@ using System.Data.Entity;
 using System.Web.Http;
 using Vidrent.Dtos;
 using Vidrent.Models;
+using Vidrent.EF;
 
 namespace Vidrent.Controllers.Api
 {
     public class CustomersController : ApiController
     {
-        private ApplicationDbContext _context;
+        private Entities _context;
 
         public CustomersController()
         {
-            _context = new ApplicationDbContext();
+            _context = new Entities();
         }
 
         // GET /api/customers
         public IHttpActionResult GetCustomers()
         {
-            var customerDtos = _context.Customers.Include(c => c.MembershipType).ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customerDtos = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return Ok(customerDtos);
         }
@@ -33,23 +34,23 @@ namespace Vidrent.Controllers.Api
             if (customer == null)
                 return NotFound();
 
-            return Ok(Mapper.Map<Customer, CustomerDto>(customer));
+            return Ok(customer);
         }
 
         // POST /api/customers
         [HttpPost]
-        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest();
+        //public IHttpActionResult CreateCustomer(CustomerDto customerDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest();
 
-            var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
-            _context.Customers.Add(customer);
-            _context.SaveChanges();
+        //    var customer = customerDto;
+        //    _context.Customers.Add(customer);
+        //    _context.SaveChanges();
 
-            customerDto.Id = customer.Id;
-            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
-        }
+        //    customerDto.Id = customer.Id;
+        //    return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
+        //}
 
         // PUT /api/customers/1
         [HttpPut]

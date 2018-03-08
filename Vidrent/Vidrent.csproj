@@ -86,6 +86,8 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -220,6 +222,42 @@
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
+    <Compile Include="EF\AspNetRole.cs">
+      <DependentUpon>Vidrent.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AspNetUser.cs">
+      <DependentUpon>Vidrent.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AspNetUserClaim.cs">
+      <DependentUpon>Vidrent.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\AspNetUserLogin.cs">
+      <DependentUpon>Vidrent.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Customer.cs">
+      <DependentUpon>Vidrent.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\C__MigrationHistory.cs">
+      <DependentUpon>Vidrent.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\MembershipType.cs">
+      <DependentUpon>Vidrent.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Vidrent.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vidrent.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Vidrent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vidrent.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Vidrent.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vidrent.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -439,6 +477,16 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="EF\Vidrent.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Vidrent.edmx</DependentUpon>
+      <LastGenOutput>Vidrent.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\Vidrent.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Vidrent.edmx</DependentUpon>
+      <LastGenOutput>Vidrent.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -453,6 +501,13 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <EntityDeploy Include="EF\Vidrent.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Vidrent.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EF\Vidrent.edmx.diagram">
+      <DependentUpon>Vidrent.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Vidrent - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -636,6 +691,9 @@
     <EmbeddedResource Include="Migrations\201704111725230_OverridingMovieModel.resx">
       <DependentUpon>201704111725230_OverridingMovieModel.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
